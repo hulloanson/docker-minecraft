@@ -4,7 +4,8 @@ RUN apt-get update
 RUN apt-get install wget curl -y
 ENV DEBIAN_FRONTEND=noninteractive
 RUN wget https://launcher.mojang.com/download/Minecraft.deb -O /tmp/Minecraft.deb
-RUN dpkg -i /tmp/Minecraft.deb; apt-get -f install -y; rm /tmp/Minecraft.deb
+RUN dpkg -i /tmp/Minecraft.deb; apt-get -f install -y
+RUN rm /tmp/Minecraft.deb
 
 # TODO: NVIDIA
 
