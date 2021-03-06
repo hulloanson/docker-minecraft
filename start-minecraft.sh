@@ -11,17 +11,17 @@ if [[ -z "${IMAGE_NAME}" ]];then
 fi
 
 if [[ -z "${MC_DIR}" ]];then
-  MC_DIR=".minecraft"
+  MC_DIR="${HOME}/.minecraft"
 fi
 
 mkdir -p "${MC_DIR}"
-chown -R "${USER}" "${MC_DIR}"
+chown -R "${!USER_VAR}" "${MC_DIR}"
 
 args=(
   --name "minecraft-${USER}" --rm
   -v /tmp/.X11-unix:/tmp/.X11-unix
   -v "$HOME/.Xauthority:/home/debian/.Xauthority"
-  -v "$HOME/.minecraft:/home/debian/.minecraft"
+  -v "${MC_DIR}/.minecraft:/home/debian/.minecraft"
   -e DISPLAY=$DISPLAY
   # TODO: activating IM. the lines below does not work (yet! need more figuring out).
   #-e GTK_IM_MODULE=$GTK_IM_MODULE
