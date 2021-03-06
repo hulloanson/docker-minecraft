@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+USER_VAR=USER
+if [[ ! -z "${SUDO_USER}" ]]; then
+  HOME="$(bash -c "cd ~$(printf %q $SUDO_USER) && pwd")"
+  USER_VAR=SUDO_USER
+fi
+
 if [[ -z "${IMAGE_NAME}" ]];then
   IMAGE_NAME="minecraft"
 fi
