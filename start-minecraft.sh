@@ -6,6 +6,10 @@ if [[ ! -z "${SUDO_USER}" ]]; then
   USER_VAR=SUDO_USER
 fi
 
+ACTUAL_USER=${!USER_VAR}
+
+USER_ID="$( id -u "${ACTUAL_USER}" )"
+
 if [[ -z "${IMAGE_NAME}" ]];then
   IMAGE_NAME="minecraft"
 fi
@@ -15,7 +19,7 @@ if [[ -z "${MC_DIR}" ]];then
 fi
 
 mkdir -p "${MC_DIR}"
-chown -R "${!USER_VAR}" "${MC_DIR}"
+chown -R "${ACTUAL_USER}" "${MC_DIR}"
 
 args=(
   --name "minecraft-${USER}" --rm
@@ -31,7 +35,9 @@ args=(
   -h "$HOSTNAME"
   # So container can connect to host's X11 server
   --network=host
-  # TODO: pulseaudio
+  # pulseaudio
+  -v /run/user/${USER_ID}/pulse/native:/run/user/1000/pulse/native
+  -e PULSE_SERVER=/run/user/1000/pulse/native
   --device=/dev/dri
   --group-add video
   ${IMAGE_NAME}

@@ -28,6 +28,9 @@ It also passes GPU to docker (AMD only now). See `Dockerfile` and `start-minecra
 
 ## TODOs
 
-1. [ ] Pulseaudio
+1. [x] Pulseaudio
+
+  - Done! Many thanks to https://github.com/TheBiggerGuy/docker-pulseaudio-example. I copied the `pulse-client.conf` from him.
+
 2. [ ] Input Method
 3. [ ] NVIDIA - the tutorial is actually [right here](http://wiki.ros.org/docker/Tutorials/Hardware%20Acceleration)
