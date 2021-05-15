@@ -30,5 +30,17 @@ ENV HOME /home/debian
 RUN mkdir /home/debian/.minecraft
 RUN chown -R debian:debian /home/debian/.minecraft
 
+WORKDIR /home/debian/.minecraft
+
+USER root
+
+RUN [ "wget", "https://maven.minecraftforge.net/net/minecraftforge/forge/1.16.5-36.1.0/forge-1.16.5-36.1.0-installer.jar", "-O", "/opt/forge-installer.jar" ]
+
+COPY ./copy/scripts /scripts
+
+RUN chmod a+x /scripts/*
+
+USER debian
+
 CMD /usr/bin/minecraft-launcher
 

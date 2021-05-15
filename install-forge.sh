@@ -42,6 +42,9 @@ args=(
   --device=/dev/dri
   --group-add video
   ${IMAGE_NAME}
+  "bash"
+  #"cd /home/debian/.minecraft; ls"
+  "/scripts/run-forge-installer.bash"
 )
 
 docker run ${args[@]}
