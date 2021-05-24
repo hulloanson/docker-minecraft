@@ -34,7 +34,7 @@ WORKDIR /home/debian/.minecraft
 
 USER root
 
-RUN [ "wget", "https://maven.minecraftforge.net/net/minecraftforge/forge/1.16.5-36.1.0/forge-1.16.5-36.1.0-installer.jar", "-O", "/opt/forge-installer.jar" ]
+RUN [ "wget", "https://maven.minecraftforge.net/net/minecraftforge/forge/1.12.2-14.23.5.2855/forge-1.12.2-14.23.5.2855-installer.jar", "-O", "/opt/forge-installer.jar" ]
 
 COPY ./copy/scripts /scripts
 
